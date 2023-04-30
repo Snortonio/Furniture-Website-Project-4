@@ -89,3 +89,12 @@
 .num{
   width: 40px;
 }
+.remove-button{
+  background-color: red;
+  color: white;
+  border-color: white;
+}
+#shoppingCart{
+  background-color: #ccc;
+  border-radius: 5px;
+}

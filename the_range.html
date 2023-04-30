@@ -82,7 +82,7 @@
             <div class="container" id="cart">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h2>SHOPPING CART</h2>
+                        <br><h2 id="shoppingCart">SHOPPING CART</h2><br>
                     </div>
                 </div> 
                 <table class="table align-middle">
@@ -93,25 +93,11 @@
                         <th scope="col"><h3>PRICE</h3></th>
                         <th scope="col"><h3>QUANTITY</h3></th>
                         <th scope="col"><h3>TOTAL</h3></th>
+                        <th scope="col"></th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row"></th>
-                        <td><h4 class ="item-name">Stylish Leather Couch</h4></td>
-                        <td><h4 class ="item-price">$1000</h4></td>
-                        <td><input type = 'number' class='num' value = '1'></td>
-                        <td><h4 class ="total-price">$1000</h4></td>
-                        <td><button class="remove-button" type="button">Remove</button></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"></th>
-                        <td><h4 class ="item-name">Modern Leather Couch</h4></td>
-                        <td><h4 class ="item-price">$1500</h4></td>
-                        <td><input type = 'number' class='num' value = '1'></td>
-                        <td><h4 class ="total-price">$1500</h4></td>
-                        <td><button class="remove-button" type="button">Remove</button></td>
-                      </tr>
+                    <tbody class="cart-items">
+                      
                     </tbody>
                     <tr>
                         <th scope="row"></th>
@@ -119,11 +105,17 @@
                         <td></td>
                         <td><h3>GRAND TOTAL</h3></td>
                         <td><h4 class="grand-total">$0</h4></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scopt="row"></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="#" class="btn btn-primary">PURCHASE</a></td>
+                        <td></td>
                     </tr>
                   </table>
-            </div>
-            <div>
-                <button>PURCHASE</button>
             </div>
         </main>
     </body>
@@ -145,8 +137,8 @@
         let add_btns = document.getElementsByClassName("btn-primary");
         let main_container = document.getElementsByTagName('tbody')[0]; //first element
         let quantity_fields = document.getElementsByClassName('num')
-
-        
+        let removeBtns = document.getElementsByClassName ('remove-button')
+        let itemTitle = document.getElementsByClassName('card-title')
 
         for(let i = 0; i < add_btns.length;i++){
         add_btns[i].addEventListener('click', addToCart)
@@ -169,10 +161,15 @@
             main_container.append(itemContainer)
 
         for(let i = 0; i < quantity_fields.length;i++){
-        quantity_fields[i].addEventListener('change', updateTotal)
+            quantity_fields[i].addEventListener('change', updateTotal)
         }
         
+        for(let i = 0; i < removeBtns.length;i++){
+            removeBtns[i].addEventListener('click', removeItem)
+        }
+
         grandTotal()
+
 
         }
 
@@ -197,6 +194,13 @@
             total += totalPrice_content
             }
             grandTotal.innerText = '$' + total
+        }
+
+        function removeItem(event){
+            removeBtns = event.target
+            removeBtns_gparent = removeBtns.parentElement.parentElement
+            removeBtns_gparent.remove()
+            grandTotal()
         }
 
     </script>
