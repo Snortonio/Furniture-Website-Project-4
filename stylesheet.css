@@ -64,3 +64,28 @@
   #map{
     text-align: center;
   }
+  #couch{
+    width: 300px
+  }
+  #range{
+    text-align: center;
+    padding: 20px;
+  }
+  .card-img-overlay{
+    text-align: center;
+    color: white;
+    margin-top: 100px;
+  }
+  #cart{
+    text-align: center;
+  }
+  .add-btn{
+    background-color: rgb(24, 201, 63);
+    color: white;
+  }
+  .card{
+    text-align: center;
+  }
+.num{
+  width: 40px;
+}
