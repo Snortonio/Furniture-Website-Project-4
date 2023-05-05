@@ -141,12 +141,18 @@
         let removeBtns = document.getElementsByClassName ('remove-button')
         let itemTitle = document.getElementsByClassName('card-title')
 
+       let cart =[];
+
+       if(localStorage.getItem('cart-items')){
+        cart = JSON.parse(localStorage.getItem('cart-items'));
+       }
+
         // Loop through
         for(let i = 0; i < add_btns.length;i++){
         add_btns[i].addEventListener('click', addToCart)
-
+        
         }
-        //Add to cart function that assigns variables to the parents elemetns of the add button and then creates a table row with desired html//
+
         function addToCart(event){
             let btn = event.target
             let btn_parent = btn.parentElement
@@ -160,8 +166,9 @@
                         <td><input type = 'number' class='num' value = '1'></td>
                         <td><h4 class ="total-price">${itemPrice}</h4></td>
                         <td><button class="remove-button" type="button">Remove</button></td>`
-            
+            cart.push(itemContainer);
             main_container.append(itemContainer)
+            save()
 
 
         for(let i = 0; i < quantity_fields.length;i++){
@@ -173,9 +180,9 @@
         }
 
         grandTotal()
-
+        save()
         }
-        // Function to update total column based on price and number of items
+
         function updateTotal(event){
             numberOfItems = event.target
             numberOfItems_parent = numberOfItems.parentElement.parentElement
@@ -185,9 +192,9 @@
             totalField.innerText = '$' + numberOfItems.value * priceField_content //multiply values together for total and add a dollar sign
 
         grandTotal()
-  
+        save()
         }
-        // Function to update grand total with the total of each item row in the cart
+
         function grandTotal(){
             let total = 0
             let grandTotal = document.getElementsByClassName('grand-total')[0]
@@ -198,17 +205,22 @@
             total += totalPrice_content
             }
             grandTotal.innerText = '$' + total
+            save()
             
         }
-        // Function to remove row when remove button is clicked
+
         function removeItem(event){
             removeBtns = event.target
             removeBtns_gparent = removeBtns.parentElement.parentElement
             removeBtns_gparent.remove()
             grandTotal()
+            save()
             
         }
        
+        function save(){
+            localStorage.setItem('cart-items', JSON.stringify(cart));
+        }
 
     </script>
 </html>
