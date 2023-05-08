@@ -134,19 +134,20 @@
       </div>
     </footer>
     <script>
-      // Obtain class elements by class name and assign variable
+      // Obtain class elements by class name and assign variables
         let add_btns = document.getElementsByClassName("btn-primary");
         let main_container = document.getElementsByTagName('tbody')[0]; //first element child of tag
         let quantity_fields = document.getElementsByClassName('num')
         let removeBtns = document.getElementsByClassName ('remove-button')
         let itemTitle = document.getElementsByClassName('card-title')
 
-        // Loop through
+        // Loop through the group of add buttons//
         for(let i = 0; i < add_btns.length;i++){
-        add_btns[i].addEventListener('click', addToCart)
+        add_btns[i].addEventListener('click', addToCart) //When an add button is clicked then the addToCart function is activated//
 
         }
-        //Add to cart function that assigns variables to the parents elemetns of the add button and then creates a table row with desired html//
+        //Add to cart function that assigns variables to the parents elements of the add button and then creates a table row with desired html //
+        //Data is pulled from the particular add buttons parents//
         function addToCart(event){
             let btn = event.target
             let btn_parent = btn.parentElement
@@ -163,11 +164,11 @@
             
             main_container.append(itemContainer)
 
-
+        //Loops through each quantity input and when it is changed the updateTotal function is activated//
         for(let i = 0; i < quantity_fields.length;i++){
             quantity_fields[i].addEventListener('change', updateTotal)
         }
-        
+        //Loops though each remove button and when a remove button is clicked the removeItem function is activated//
         for(let i = 0; i < removeBtns.length;i++){
             removeBtns[i].addEventListener('click', removeItem)
         }
@@ -175,7 +176,7 @@
         grandTotal()
 
         }
-        // Function to update total column based on price and number of items
+        // Function to update total column based on price and number of items//
         function updateTotal(event){
             numberOfItems = event.target
             numberOfItems_parent = numberOfItems.parentElement.parentElement
@@ -200,7 +201,7 @@
             grandTotal.innerText = '$' + total
             
         }
-        // Function to remove row when remove button is clicked
+        // Function to remove the row when remove button is clicked//
         function removeItem(event){
             removeBtns = event.target
             removeBtns_gparent = removeBtns.parentElement.parentElement
@@ -208,7 +209,6 @@
             grandTotal()
             
         }
-       
 
     </script>
 </html>
